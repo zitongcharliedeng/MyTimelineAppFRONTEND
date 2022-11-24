@@ -1,0 +1,7 @@
+Pages:
+
+    Signup 
+        - (signin in the header)
+    Your timeline 
+        - General timeline of with images and titles of each medical event, clicking on an event preview will send you to a more indepth page/ expand into a more indepth explaination
+    Indepth page about specific event

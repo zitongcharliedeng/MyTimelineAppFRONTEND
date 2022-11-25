@@ -5,8 +5,9 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
-import RecipeReviewCard from './EventCard';
+import EventCard from './EventCard';
 import MultilineTextFields from './MultilineTextFields';
+import TimelineSpeedDialRight from '../TimelineSpeedDialRight';
 
 export default function ColorsTimeline() {
     const eventlist = [
@@ -20,6 +21,7 @@ export default function ColorsTimeline() {
       ]
 
     const displayEventCreationBox = (id) => {
+      console.log("display event creation clicked")
       return <MultilineTextFields />
       // return pop up with creation box to create event BEFORE given id (relative button rendered before any given timeline item)
     }
@@ -28,12 +30,13 @@ export default function ColorsTimeline() {
         const createdTimeline = eventlist.map((event) => {return(    
                 <TimelineItem>
                     <TimelineSeparator>
-                      <button onClick={() => displayEventCreationBox(event.id)}></button>
-                      <TimelineDot onClick={displayEventCreationBox}/>
+                      <TimelineSpeedDialRight />
+                      {/* <TimelineDot sx={{borderWidth: "10px" }} onClick={() => displayEventCreationBox(event.id)}/>  */}
+                      {/* replaced ^ with speeddial */}
                       <TimelineConnector onClick={displayEventCreationBox}/>
                     </TimelineSeparator>
-                    <TimelineContent>
-                      <RecipeReviewCard 
+                    <TimelineContent sx={{marginTop: "55px"}}>
+                      <EventCard
                         title={event.title}
                         subheader={event.subheader}
                         image={event.image}
@@ -43,7 +46,12 @@ export default function ColorsTimeline() {
                     </TimelineContent>
                 </TimelineItem>
         )})
-        return createdTimeline
+        return( 
+          <>
+            {createdTimeline}
+            <TimelineDot sx={{borderWidth: "10px" }} onClick={() => displayEventCreationBox()}/>
+          </>
+        )
     }
 
 

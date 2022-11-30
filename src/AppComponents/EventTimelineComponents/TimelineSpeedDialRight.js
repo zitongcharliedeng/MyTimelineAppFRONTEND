@@ -2,19 +2,34 @@ import * as React from 'react';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
-import SaveIcon from '@mui/icons-material/Save';
 import PrintIcon from '@mui/icons-material/Print';
 import ShareIcon from '@mui/icons-material/Share';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import templateEvent from '../EventTimelineHelpers/templateEvent';
 
-const actions = [
-  { icon: <FileCopyIcon />, name: 'Copy', clickAction: ()=>{console.log(`Hi i am copy`)}},
-  { icon: <SaveIcon />, name: 'Save' },
-  { icon: <PrintIcon />, name: 'Print' },
-  { icon: <ShareIcon />, name: 'Share' },
-];
+export default function TimelineSpeedDialRight(props) {
+  const {id, eventlist, setEventlist} = props
 
-export default function TimelineSpeedDialRight() {
+  const addEvent = () => {
+      const eventlistLocal = [...eventlist]
+      if (id === (eventlist.length+1)) {
+        eventlistLocal.push(templateEvent(eventlist.length + 1))
+      } else {
+        eventlistLocal.splice((eventlist.findIndex(object => object.id === id)), 0, templateEvent(eventlist.length + 1))
+      }
+      setEventlist(eventlistLocal)
+    }
+
+  const actions = [
+    { 
+      icon: <AddBoxIcon />, 
+      name: 'Add a new event here', 
+      clickAction: addEvent,
+    },
+    { icon: <PrintIcon />, name: 'Print' },
+    { icon: <ShareIcon />, name: 'Share' },
+  ];
+
   return (
         <SpeedDial
           ariaLabel="TimelineSpeedDialRight"

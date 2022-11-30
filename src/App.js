@@ -1,12 +1,11 @@
 import './App.css';
-import ColorsTimeline from './components/Timeline/ColorsTimeline';
-import PersistentDrawerRight from './components/Timeline/PersistentDrawerRight';
+import EventTimeline from './AppComponents/EventTimeline';
+import PersistentDrawerRight from './AppComponents/EventTimelineComponents/PersistentDrawerRight';
 
 function App() {
   return (
     <div className="App">
-      <PersistentDrawerRight />
-      < ColorsTimeline />
+      < EventTimeline />
     </div>
   );
 }

@@ -39,7 +39,7 @@ export default function EventCard(props) {
     return (
       <Card className={`card_${props.id}`} sx={{width: "400px"}}>
         {console.log(`editing id ${props.id}`)}
-        <EventCardEditForm eventlist={props.eventlist} setEventlist={props.setEventlist}/>
+        <EventCardEditForm eventlist={props.eventlist} setEventlist={props.setEventlist} id={props.id}/>
         <CardHeader
           action={
             <IconButton aria-label="settings">

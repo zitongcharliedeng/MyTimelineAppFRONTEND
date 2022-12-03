@@ -23,7 +23,8 @@ export default function EventTimeline() {
               <EventCard id={event.id}
                 title={event.title}
                 dateandtime={event.dateandtime}
-                image={event.image}
+                imageurl={event.image}
+                imageupload={event.imageupload}
                 shortdescription={event.shortdescription}
                 longdescription={event.longdescription}
                 editmode={event.editmode}

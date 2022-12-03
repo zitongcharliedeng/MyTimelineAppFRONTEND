@@ -5,6 +5,7 @@ const templateEvent = (id) => {
         title: "",
         dateandtime: "",
         image: "",
+        imageupload: undefined,
         shortdescription: "",
         longdescription: "",
       }

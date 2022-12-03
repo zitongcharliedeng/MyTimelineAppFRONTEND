@@ -39,7 +39,7 @@ export default function EventCard(props) {
     return (
       <Card className={`card_${props.id}`} sx={{width: "400px"}}>
         {console.log(`editing id ${props.id}`)}
-        <EventCardEditForm eventlist={props.eventlist} setEventlist={props.setEventlist} id={props.id}/>
+        <EventCardEditForm eventlist={props.eventlist} setEventlist={props.setEventlist} id={props.id} imageupload={props.imageupload}/>
         <CardHeader
           action={
             <IconButton aria-label="settings">
@@ -52,7 +52,7 @@ export default function EventCard(props) {
         <CardMedia
           component="img"
           height="194"
-          image={props.image}
+          image={props.imageurl}
           alt="Missing Image"
         />
         <CardContent>

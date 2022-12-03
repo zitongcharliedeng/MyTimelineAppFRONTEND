@@ -11,6 +11,13 @@ export default function EventCardEditForm(props) {
   const [dateandtime, setDateandtime] =  React.useState(dayjs())
   const [shortdescription, setShortdescription] =  React.useState("")
   const [longdescription, setLongdescription] =  React.useState("")
+  const [imageFile, setImageFile] = React.useState()
+
+  console.log(props.eventlist)
+
+  function handleChange(event) {
+    setImageFile(event.target.files[0])
+  }
 
   const saveEvent = () => {
     const updatedEvent = {
@@ -18,7 +25,8 @@ export default function EventCardEditForm(props) {
       editmode: false,
       title: title,
       dateandtime: dateandtime,
-      image: "",
+      imageupload: imageFile,
+      //imageurl: defined by backend after image uploaded
       shortdescription: shortdescription,
       longdescription: longdescription,
     }
@@ -26,6 +34,10 @@ export default function EventCardEditForm(props) {
     const indextoreplace = eventlistLocal.map(o => o.id).indexOf(props.id);
     eventlistLocal[indextoreplace] = updatedEvent
     props.setEventlist(eventlistLocal)
+
+    //save event to backend:
+    // find eventlist by session id/ user id
+    // update to be = eventlistLocal
   }
   return (
     <Box
@@ -55,6 +67,8 @@ export default function EventCardEditForm(props) {
           <input
             type="file"
             hidden
+            accept=".jpeg,.png"
+            onChange={handleChange}
           />
         </Button>
       </div>

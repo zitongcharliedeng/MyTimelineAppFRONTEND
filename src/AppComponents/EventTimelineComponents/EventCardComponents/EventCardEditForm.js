@@ -13,8 +13,6 @@ export default function EventCardEditForm(props) {
   const [longdescription, setLongdescription] =  React.useState("")
   const [imageFile, setImageFile] = React.useState()
 
-  console.log(props.eventlist)
-
   function handleChange(event) {
     setImageFile(event.target.files[0])
   }
@@ -34,11 +32,8 @@ export default function EventCardEditForm(props) {
     const indextoreplace = eventlistLocal.map(o => o.id).indexOf(props.id);
     eventlistLocal[indextoreplace] = updatedEvent
     props.setEventlist(eventlistLocal)
-
-    //save event to backend:
-    // find eventlist by session id/ user id
-    // update to be = eventlistLocal
-  }
+  };
+  
   return (
     <Box
       component="form"

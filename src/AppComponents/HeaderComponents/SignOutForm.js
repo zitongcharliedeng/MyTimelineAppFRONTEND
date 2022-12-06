@@ -2,13 +2,12 @@ import { Button } from '@mui/material'
 import React from 'react'
 
 function SignOutForm(props) {
-    //const user = user.findby(props.sessionId)
     const handleSignOut = () => {
-      props.setSessionId(0)
+      props.setCurrentUser({id: '', username: '', sessionToken: ''})
     }
     return (
     <div>
-        Currently logged in as (user.username), sessionId: (user.sessionId)
+        Currently logged in as user:{props.currentUser.username}
         <Button variant="contained" onClick={handleSignOut}>
           Sign Out
         </Button>

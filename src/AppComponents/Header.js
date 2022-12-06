@@ -20,6 +20,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import SignInForm from './HeaderComponents/SignInForm';
 import SignOutForm from './HeaderComponents/SignOutForm';
+import TimelineIcon from '@mui/icons-material/Timeline';
 
 const drawerWidth = 240;
 
@@ -83,10 +84,13 @@ export default function Header(props) {
   const handleListItemClick = (text) => {
     if (text === 'Create Account') {
       props.setView('signUp')
-    } else {
-      return console.log("button has no function yet lol")
+    } if (text === 'Your Timeline') {
+      props.setView('timeline')
+    } if (text === 'Contact Us') {
+      props.setView('contactUs')
     }
   }
+  
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -127,14 +131,23 @@ export default function Header(props) {
         </DrawerHeader>
         <Divider />
 
-        {(props.sessionId === undefined)? <SignInForm /> : <SignOutForm />}
+        {(props.currentUser.sessionToken === '')? <SignInForm currentUser={props.currentUser} setCurrentUser={props.setCurrentUser} /> : <SignOutForm currentUser={props.currentUser} setCurrentUser={props.setCurrentUser} />}
         <Divider />
         <List>
-          {['Create Account', 'Contact Us'].map((text, index) => (
+          {['Your Timeline', 'Create Account', 'Contact Us'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton onClick={() => handleListItemClick(text)}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  { () => {
+                      if (text === 'Your Timeline') {
+                        return <TimelineIcon />
+                      } if (text === 'Create Account') {
+                        return <InboxIcon />
+                      } if (text === 'Contact Us') {
+                        return <MailIcon />
+                      } 
+                    }
+                  }
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>

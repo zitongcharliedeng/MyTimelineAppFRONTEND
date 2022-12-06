@@ -1,11 +1,12 @@
 import * as React from 'react';
 import './App.css';
+import ContactUsPage from './AppComponents/ContactUsPage';
 import EventTimeline from './AppComponents/EventTimeline';
 import Header from './AppComponents/Header';
 import SignUpPage from './AppComponents/SignUpPage';
 
 function App() {
-  const [sessionId, setSessionId] = React.useState(undefined);
+  const [currentUser, setCurrentUser] = React.useState({id: '', username: '', sessionToken: ''});
   const [view, setView] = React.useState('signUp');
 
   const page = () => {
@@ -13,19 +14,21 @@ function App() {
       return(
         <SignUpPage />
       )
-    } else {
-      return( 
-        <div className="signedIn">
-          <Header sessionId={sessionId} setSessionId={setSessionId} setView={setView}/>
-          < EventTimeline sessionId={sessionId} setSessionId={setSessionId}/>
-        </div>
+    } if (view === 'timeline') {
+      return(
+        < EventTimeline currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      )
+    } if (view === 'contactUs') {
+      return(
+        < ContactUsPage />
       )
     }
   }
   
+  
   return (
-    <div className="signedIn">
-      <Header sessionId={sessionId} setSessionId={setSessionId} setView={setView}/>
+    <div className="App">
+      <Header currentUser={currentUser} setCurrentUser={setCurrentUser} setView={setView}/>
       {page()}
     </div>
     

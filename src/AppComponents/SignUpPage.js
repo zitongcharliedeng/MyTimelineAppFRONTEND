@@ -2,6 +2,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material'
 import axios from 'axios';
 import React from 'react';
+import Alert from '@mui/material/Alert';
 
 function SignUpPage() {
   const [values, setValues] = React.useState({
@@ -12,6 +13,8 @@ function SignUpPage() {
     weightRange: '',
     showPassword: false,
   });
+
+  const [signUpAlert, setSignUpAlert] = React.useState('')
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -28,23 +31,27 @@ function SignUpPage() {
     event.preventDefault();
   };
 
+
   const handleSignUp = async () => {
     try{
-      const response = await axios.post('/users', {params: { username: values.username, password: values.password}})
-      console.log(response)
+      const response = await axios.post('/users', {user: { username: values.username, password: values.password}})
+      console.log(response.data.alert)
+      setSignUpAlert(response.data.alert)
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Box sx={{ display: 'block' }}>
+      <h4> Create an Account below or "Sign in" in the navbar (left)!</h4>
       <div>
         <TextField
           label="Username"
           id="outlined-multiline-flexible"
           sx={{ m: 1, width: '25ch' }}
           value={values.username}
+          onChange={handleChange('username')}
         />
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
@@ -68,9 +75,15 @@ function SignUpPage() {
             label="Password"
           />
         </FormControl>
+        <br/>
         <Button variant="contained" onClick={handleSignUp}>
           Sign Up
         </Button>
+      </div>
+      <div>
+        <Alert variant="filled" severity="success" sx={{ display: (signUpAlert === '') ? "none" : "block" }}>
+          {signUpAlert}
+        </Alert>
       </div>
     </Box>
   )

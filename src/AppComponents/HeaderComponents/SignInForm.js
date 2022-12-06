@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Button } from '@mui/material';
+import { Alert, Button } from '@mui/material';
 import axios from 'axios';
 
 export default function SignInForm(props) {
@@ -20,6 +20,8 @@ export default function SignInForm(props) {
     weightRange: '',
     showPassword: false,
   });
+
+  const [signInAlert, setSignInAlert] = React.useState('')
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -38,8 +40,10 @@ export default function SignInForm(props) {
 
   const handleSignIn = async () => {
     try{
-      const response = await axios.post('/login', {params: { username: values.username, password: values.password}})
-      props.setSessionId(response) // again, no session security (tokens) since this is just a test 
+      const response = await axios.post('/login', {user: { username: values.username, password: values.password}})
+      console.log(response)
+      props.setCurrentUser(response.data.user)
+      setSignInAlert(response.data.alert)
     } catch (error) {
       console.log(error);
     }
@@ -80,6 +84,9 @@ export default function SignInForm(props) {
         <Button variant="contained" onClick={handleSignIn}>
           Sign In
         </Button>
+        <Alert variant="filled" severity={(signInAlert === "Successful sign in :)")? "success" : "error"} sx={{ display: (signInAlert === '') ? "none" : "block" }}>
+          {signInAlert}
+        </Alert>
       </div>
     </Box>
   );

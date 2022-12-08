@@ -131,23 +131,25 @@ export default function Header(props) {
         </DrawerHeader>
         <Divider />
 
-        {(props.currentUser.sessionToken === '')? <SignInForm currentUser={props.currentUser} setCurrentUser={props.setCurrentUser} /> : <SignOutForm currentUser={props.currentUser} setCurrentUser={props.setCurrentUser} />}
+        {(props.currentUser.sessionToken === '')? <SignInForm setView={props.setView} currentUser={props.currentUser} setCurrentUser={props.setCurrentUser} /> : <SignOutForm currentUser={props.currentUser} setCurrentUser={props.setCurrentUser} />}
         <Divider />
         <List>
-          {['Your Timeline', 'Create Account', 'Contact Us'].map((text, index) => (
+          {['Your Timeline', 'Create Account', 'Contact Us'].map((text) => (
             <ListItem key={text} disablePadding>
               <ListItemButton onClick={() => handleListItemClick(text)}>
                 <ListItemIcon>
-                  { () => {
-                      if (text === 'Your Timeline') {
-                        return <TimelineIcon />
-                      } if (text === 'Create Account') {
-                        return <InboxIcon />
-                      } if (text === 'Contact Us') {
-                        return <MailIcon />
-                      } 
+                  <div>
+                    { (() => {
+                        if (text === 'Your Timeline') {
+                          return <TimelineIcon />
+                        } if (text === 'Create Account') {
+                          return <InboxIcon />
+                        } if (text === 'Contact Us') {
+                          return <MailIcon />
+                        } 
+                      })()
                     }
-                  }
+                  </div>
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>

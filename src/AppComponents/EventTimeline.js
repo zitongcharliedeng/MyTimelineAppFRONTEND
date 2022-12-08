@@ -11,29 +11,30 @@ import axios from 'axios';
 
 export default function EventTimeline(props) {
     const [eventlist, setEventlist] = React.useState([templateEvent(1)])
-   
+
     React.useEffect((() => {
-      const getEventlistBackend = async () => {
-        try{
-          const response = await axios.post(`/eventlists/:${props.currentUser.id}`, {params: {user: props.currentUser}})
-          console.log(response)
-        } catch (error) {
-          console.log(error);
+        const getEventlistBackend = async () => {
+          if (!props.currentUser.id) return
+          try{
+            const response = await axios.get(`http://localhost:4000/eventlists/${props.currentUser.id}`, {headers: {sessionToken: props.currentUser.sessionToken}})
+            setEventlist(JSON.parse(response.data.eventlistInJson))
+            } catch (error) {
+              console.log(error)
+          }
         }
-      }
         getEventlistBackend()
-      })
-      , [props.currentUser]
-    )
+      }), [props.currentUser])
 
     React.useEffect((() => {
         const updateEventlistBackend = async () => {
+          if (!props.currentUser.id) return
           try{
-            const response = await axios.put(`/eventlists/:${props.currentUser.id}`, {eventlist: {eventlistInJson: JSON.stringify(eventlist)}, user: props.currentUser})
+            const response = await axios.put(`http://localhost:4000/eventlists/${props.currentUser.id}`, {eventlist: {eventlistInJson: JSON.stringify(eventlist)}}, {headers: {sessionToken: props.currentUser.sessionToken}})
             console.log(response.data.alert)
           } catch (error) {
             console.log(error);
           }
+
         }
         updateEventlistBackend()
       })
@@ -41,7 +42,7 @@ export default function EventTimeline(props) {
 
     const createTimeline = () => {
       return eventlist.map((event) => {return(    
-        <TimelineItem>
+        <TimelineItem key={event.id}>
             <TimelineSeparator>
               <TimelineSpeedDialRight eventlist={eventlist} setEventlist={setEventlist} id={event.id}/>
               <TimelineConnector/>
@@ -49,12 +50,12 @@ export default function EventTimeline(props) {
             <TimelineContent sx={{marginTop: "55px"}}>
               <EventCard id={event.id}
                 title={event.title}
-                dateandtime={event.dateandtime}
-                imageurl={event.image}
+                dateAndTime={event.dateAndTime}
+                imageUrl={event.image}
                 imageupload={event.imageupload}
-                shortdescription={event.shortdescription}
-                longdescription={event.longdescription}
-                editmode={event.editmode}
+                shortDescription={event.shortDescription}
+                longDescription={event.longDescription}
+                editMode={event.editMode}
                 eventlist={eventlist}
                 setEventlist={setEventlist}
               />

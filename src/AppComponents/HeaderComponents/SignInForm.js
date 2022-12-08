@@ -39,9 +39,9 @@ export default function SignInForm(props) {
   };
 
   const handleSignIn = async () => {
+    props.setView('timeline')
     try{
-      const response = await axios.post('/login', {user: { username: values.username, password: values.password}})
-      console.log(response)
+      const response = await axios.post('http://localhost:4000/login', {user: { username: values.username, password: values.password}})
       props.setCurrentUser(response.data.user)
       setSignInAlert(response.data.alert)
     } catch (error) {

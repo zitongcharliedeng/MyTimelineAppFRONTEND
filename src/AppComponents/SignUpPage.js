@@ -34,8 +34,7 @@ function SignUpPage() {
 
   const handleSignUp = async () => {
     try{
-      const response = await axios.post('/users', {user: { username: values.username, password: values.password}})
-      console.log(response.data.alert)
+      const response = await axios.post('http://localhost:4000/users', {user: { username: values.username, password: values.password}})
       setSignUpAlert(response.data.alert)
     } catch (error) {
       console.log(error);

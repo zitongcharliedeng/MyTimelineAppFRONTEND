@@ -1,13 +1,12 @@
 const templateEvent = (id) => {
       return {
         id: id,
-        editmode: true,
+        editMode: true,
         title: "",
-        dateandtime: "",
-        image: "",
-        imageupload: undefined,
-        shortdescription: "",
-        longdescription: "",
+        dateAndTime: "",
+        imageUrl: "",
+        shortDescription: "",
+        longDescription: "",
       }
     } 
 

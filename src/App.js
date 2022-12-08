@@ -8,7 +8,7 @@ import SignUpPage from './AppComponents/SignUpPage';
 function App() {
   const [currentUser, setCurrentUser] = React.useState({id: '', username: '', sessionToken: ''});
   const [view, setView] = React.useState('signUp');
-
+  
   const page = () => {
     if (view === 'signUp') {
       return(
@@ -16,11 +16,11 @@ function App() {
       )
     } if (view === 'timeline') {
       return(
-        < EventTimeline currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <EventTimeline currentUser={currentUser} setCurrentUser={setCurrentUser} />
       )
     } if (view === 'contactUs') {
       return(
-        < ContactUsPage />
+        <ContactUsPage />
       )
     }
   }
@@ -28,7 +28,7 @@ function App() {
   
   return (
     <div className="App">
-      <Header currentUser={currentUser} setCurrentUser={setCurrentUser} setView={setView}/>
+      <Header setView={setView} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       {page()}
     </div>
     

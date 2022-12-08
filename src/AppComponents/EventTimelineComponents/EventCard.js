@@ -35,15 +35,14 @@ export default function EventCard(props) {
     console.log(`handleMoreVertIconClick for id ${props.id}`)
   }
 
-  if (props.editmode === true) { 
+  if (props.editMode === true) { 
     return (
       <Card className={`card_${props.id}`} sx={{width: "400px"}}>
-        {console.log(`editing id ${props.id}`)}
         <EventCardEditForm eventlist={props.eventlist} setEventlist={props.setEventlist} id={props.id} imageupload={props.imageupload}/>
         <CardHeader
           action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon onClick={() => {handleMoreVertIconClick(props.id)}}/>
+            <IconButton aria-label="settings" onClick={() => {handleMoreVertIconClick(props.id)}}>
+              <MoreVertIcon/>
             </IconButton>
           }
           title={props.title}
@@ -52,7 +51,7 @@ export default function EventCard(props) {
         <CardMedia
           component="img"
           height="194"
-          image={props.imageurl}
+          image={props.imageUrl}
           alt="Missing Image"
         />
         <CardContent>
@@ -84,8 +83,8 @@ export default function EventCard(props) {
       <Card className={`card_${props.id}`}>
         <CardHeader
           action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon onClick={() => {handleMoreVertIconClick(props.id)}}/>
+            <IconButton aria-label="settings" onClick={() => {handleMoreVertIconClick(props.id)}}>
+              <MoreVertIcon/>
             </IconButton>
           }
           title={props.title}

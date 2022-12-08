@@ -9,7 +9,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 export default function DateAndTimePickers(props) {
 
   const handleChange = (newValue) => {
-    props.setDateandtime(newValue)
+    props.setDateAndTime(newValue)
   };
 
   return (
@@ -18,13 +18,13 @@ export default function DateAndTimePickers(props) {
         <DesktopDatePicker
           label="Date"
           inputFormat="MM/DD/YYYY"
-          value={props.dateandtime}
+          value={props.dateAndTime}
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />
         <TimePicker
           label="Time"
-          value={props.dateandtime}
+          value={props.dateAndTime}
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />

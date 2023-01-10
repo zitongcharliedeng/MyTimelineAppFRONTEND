@@ -93,7 +93,7 @@ export default function EventCard(props) {
         <CardMedia
           component="img"
           height="194"
-          image={props.image}
+          image={props.imageUrl}
           alt="Missing Image"
         />
         <CardContent>

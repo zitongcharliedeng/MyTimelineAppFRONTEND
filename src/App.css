@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+div.imageFileButton{
+  margin: 1ch;
+  padding: 1ch;
+  outline: 2px dashed rgb(137, 152, 221);
+}

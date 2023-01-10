@@ -11,7 +11,17 @@ import axios from 'axios';
 
 export default function EventTimeline(props) {
     const [eventlist, setEventlist] = React.useState([templateEvent(1)])
+    const updateEventlistBackend = async () => {
+      if (!props.currentUser.id) return
+      try{
+        const response = await axios.put(`http://localhost:4000/eventlists/${props.currentUser.id}`, {eventlist: {eventlistInJson: JSON.stringify(eventlist)}}, {headers: {sessionToken: props.currentUser.sessionToken}})
+        console.log(response.data.alert)
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
+    
     React.useEffect((() => {
         const getEventlistBackend = async () => {
           if (!props.currentUser.id) return
@@ -25,20 +35,8 @@ export default function EventTimeline(props) {
         getEventlistBackend()
       }), [props.currentUser])
 
-    React.useEffect((() => {
-        const updateEventlistBackend = async () => {
-          if (!props.currentUser.id) return
-          try{
-            const response = await axios.put(`http://localhost:4000/eventlists/${props.currentUser.id}`, {eventlist: {eventlistInJson: JSON.stringify(eventlist)}}, {headers: {sessionToken: props.currentUser.sessionToken}})
-            console.log(response.data.alert)
-          } catch (error) {
-            console.log(error);
-          }
 
-        }
-        updateEventlistBackend()
-      })
-    )
+    
 
     const createTimeline = () => {
       return eventlist.map((event) => {return(    
@@ -51,8 +49,7 @@ export default function EventTimeline(props) {
               <EventCard id={event.id}
                 title={event.title}
                 dateAndTime={event.dateAndTime}
-                imageUrl={event.image}
-                imageupload={event.imageupload}
+                imageUrl={event.imageUrl}
                 shortDescription={event.shortDescription}
                 longDescription={event.longDescription}
                 editMode={event.editMode}

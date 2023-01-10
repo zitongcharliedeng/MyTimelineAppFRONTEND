@@ -2,34 +2,21 @@ import React from 'react';
 import axios from 'axios';
 import { Button } from '@mui/material';
 
-const ImageUploadForm = (props) => {
+const ImageUploadForm = ({selectedFile, setSelectedFile}) => {
   // a local state to store the currently selected file.
-  const [selectedFile, setSelectedFile] = React.useState(null);
-
-  const handleSubmit = async(event) => {
-    event.preventDefault()
-    const formData = new FormData();
-    formData.append("image", selectedFile);
-    try {
-      const response = await axios.post("http://localhost:4000/images", formData)
-      props.setImageUrl(response.data.imageUrl)
-    } catch(error) {
-      console.log(error)
-    } 
-  }
-
+  
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0])
   }
 
   return (
-    <div>
+    <div className='imageFileButton'>
       <Button
           variant="contained"
           component="label"
           sx={{marginLeft: "8px"}}
         >
-          Select Image File
+          {selectedFile? "Change Image File" : "Select Image File"}
           <input
             type="file"
             accept=".jpeg,.png"
@@ -38,9 +25,6 @@ const ImageUploadForm = (props) => {
           />
       </Button>
       {selectedFile? selectedFile.name : ''}
-      <Button type="submit" value="Upload File" onClick={handleSubmit}>
-        Upload Image File
-      </Button>
     </div>
   )
 };

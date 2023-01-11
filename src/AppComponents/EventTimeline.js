@@ -11,16 +11,14 @@ import axios from 'axios';
 
 export default function EventTimeline(props) {
     const [eventlist, setEventlist] = React.useState([templateEvent(1)])
-    const updateEventlistBackend = async () => {
+    const updateEventlistBackend = async (x) => {
       if (!props.currentUser.id) return
       try{
-        const response = await axios.put(`http://localhost:4000/eventlists/${props.currentUser.id}`, {eventlist: {eventlistInJson: JSON.stringify(eventlist)}}, {headers: {sessionToken: props.currentUser.sessionToken}})
-        console.log(response.data.alert)
+        const response = await axios.put(`http://localhost:4000/eventlists/${props.currentUser.id}`, {eventlist: {eventlistInJson: JSON.stringify(x)}}, {headers: {sessionToken: props.currentUser.sessionToken}})
       } catch (error) {
         console.log(error);
       }
     }
-
     
     React.useEffect((() => {
         const getEventlistBackend = async () => {
@@ -34,11 +32,9 @@ export default function EventTimeline(props) {
         }
         getEventlistBackend()
       }), [props.currentUser])
-
-
     
-
     const createTimeline = () => {
+      console.log(eventlist)
       return eventlist.map((event) => {return(    
         <TimelineItem key={event.id}>
             <TimelineSeparator>
@@ -55,6 +51,7 @@ export default function EventTimeline(props) {
                 editMode={event.editMode}
                 eventlist={eventlist}
                 setEventlist={setEventlist}
+                updateEventlistBackend={updateEventlistBackend}
               />
             </TimelineContent>
         </TimelineItem>

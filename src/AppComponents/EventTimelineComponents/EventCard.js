@@ -38,7 +38,7 @@ export default function EventCard(props) {
   if (props.editMode === true) { 
     return (
       <Card className={`card_${props.id}`} sx={{width: "400px"}}>
-        <EventCardEditForm eventlist={props.eventlist} setEventlist={props.setEventlist} id={props.id} imageupload={props.imageupload}/>
+        <EventCardEditForm eventlist={props.eventlist} setEventlist={props.setEventlist} id={props.id} imageupload={props.imageupload} updateEventlistBackend={props.updateEventlistBackend}/>
         <CardHeader
           action={
             <IconButton aria-label="settings" onClick={() => {handleMoreVertIconClick(props.id)}}>

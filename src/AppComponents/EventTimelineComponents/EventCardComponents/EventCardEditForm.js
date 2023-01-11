@@ -34,7 +34,9 @@ export default function EventCardEditForm(props) {
       var eventlistLocal = [...props.eventlist]
       const indextoreplace = eventlistLocal.map(o => o.id).indexOf(props.id);
       eventlistLocal[indextoreplace] = updatedEvent
+      console.log("!!!", eventlistLocal)
       props.setEventlist(eventlistLocal)
+      props.updateEventlistBackend(eventlistLocal)
     } catch(error) {
       console.log(error)
     } 

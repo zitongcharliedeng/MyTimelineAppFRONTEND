@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import EventCardEditForm from './EventCardComponents/EventCardEditForm';
+import dayjs from 'dayjs';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -46,7 +47,7 @@ export default function EventCard(props) {
             </IconButton>
           }
           title={props.title}
-          subheader={props.subheader}
+          subheader={props.dateAndTime}
         />
         <CardMedia
           component="img"
@@ -56,7 +57,7 @@ export default function EventCard(props) {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {props.typography}
+            {props.shortDescription}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -72,7 +73,7 @@ export default function EventCard(props) {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography>
-              {props.description}
+              {props.longDescription}
             </Typography>
           </CardContent>
         </Collapse>
@@ -88,7 +89,7 @@ export default function EventCard(props) {
             </IconButton>
           }
           title={props.title}
-          subheader={props.subheader}
+          subheader={dayjs(props.dateAndTime).format('DD/MM/YYYY | HH:mm:ss | [UTC] Z')}
         />
         <CardMedia
           component="img"
@@ -98,7 +99,7 @@ export default function EventCard(props) {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {props.typography}
+            {props.shortDescription}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -114,7 +115,7 @@ export default function EventCard(props) {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography>
-              {props.description}
+              {props.longDescription}
             </Typography>
           </CardContent>
         </Collapse>

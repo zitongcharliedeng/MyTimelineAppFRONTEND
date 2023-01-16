@@ -60,7 +60,14 @@ export default function EventTimeline(props) {
 
   return (
     <div className='timelinePage'>
-      <h2> Remember to login to autosave your timeline to your account!</h2>
+    {props.currentUser.sessionToken === ''?
+      <h2>
+          Remember to login to autosave your timeline to your account!
+      </h2>
+      :
+      <></>
+    }
+        
       <Timeline position="alternate" sx={{ maxWidth: "800px", margin: "auto" }}>
         {createTimeline()}
         <TimelineItem>

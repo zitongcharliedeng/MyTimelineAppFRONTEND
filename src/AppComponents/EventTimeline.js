@@ -14,7 +14,7 @@ export default function EventTimeline(props) {
     const updateEventlistBackend = async (x) => {
       if (!props.currentUser.id) return
       try{
-        const response = await axios.put(`http://localhost:4000/eventlists/${props.currentUser.id}`, {eventlist: {eventlistInJson: JSON.stringify(x)}}, {headers: {sessionToken: props.currentUser.sessionToken}})
+        await axios.put(`http://localhost:4000/eventlists/${props.currentUser.id}`, {eventlist: {eventlistInJson: JSON.stringify(x)}}, {headers: {sessionToken: props.currentUser.sessionToken}})
       } catch (error) {
         console.log(error);
       }

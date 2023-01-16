@@ -19,7 +19,7 @@ const ImageUploadForm = ({selectedFile, setSelectedFile}) => {
           {selectedFile? "Change Image File" : "Select Image File"}
           <input
             type="file"
-            accept=".jpeg,.png"
+            accept=".jpg,.jpeg,.png"
             onChange={handleFileSelect}
             hidden
           />

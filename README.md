@@ -3,6 +3,7 @@ Backend: https://github.com/zitongcharliedeng/MyTimelineAppBACKEND
 
 https://user-images.githubusercontent.com/108423881/213824033-c814332c-52f1-44a6-9d7c-193ada8a8415.mp4
 
+Commands:
 ## Step 1 ##
 git clone URL
 ## Step 2 ##

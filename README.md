@@ -1,19 +1,7 @@
 Backend: https://github.com/zitongcharliedeng/MyTimelineAppBACKEND
 # Running in development #
-[![the documentation video](https://img.youtube.com/vi/0RN89jq9QsU/0.jpg)](https://www.youtube.com/watch?v=0RN89jq9QsU)
 
-
-
-
-
-
-
-
-
-
-
-
-
+https://user-images.githubusercontent.com/108423881/213824033-c814332c-52f1-44a6-9d7c-193ada8a8415.mp4
 
 
 # Getting Started with Create React App

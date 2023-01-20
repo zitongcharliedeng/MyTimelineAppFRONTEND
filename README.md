@@ -1,9 +1,6 @@
 Backend: https://github.com/zitongcharliedeng/MyTimelineAppBACKEND
 # Running in development #
-<video src="https://youtu.be/0RN89jq9QsU"/>
-<video src="https://youtu.be/0RN89jq9QsU"></video>
-
-
+[![the documentation video](https://img.youtube.com/vi/0RN89jq9QsU/0.jpg)](https://www.youtube.com/watch?v=0RN89jq9QsU)
 
 
 

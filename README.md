@@ -4,15 +4,15 @@ Backend: https://github.com/zitongcharliedeng/MyTimelineAppBACKEND
 https://user-images.githubusercontent.com/108423881/213824033-c814332c-52f1-44a6-9d7c-193ada8a8415.mp4
 
 ## Commands: ##
-### Step 1 ###
+<ins> ### Step 1 ### </ins>
 git clone URL
-### Step 2 ###
+<ins> ### Step 2 ### </ins>
 #### Backend: ####
 bundle install
 rails db:migrate
 #### Frontend: ####
 npm install
-### Step 3 ###
+<ins> ### Step 3 ### </ins>
 #### Backend: ####
 rails s -p 4000
 #### Frontend: ####

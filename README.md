@@ -1,3 +1,23 @@
+Backend: https://github.com/zitongcharliedeng/MyTimelineAppBACKEND
+#Running in development#
+
+https://youtu.be/0RN89jq9QsU
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

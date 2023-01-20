@@ -4,19 +4,14 @@ Backend: https://github.com/zitongcharliedeng/MyTimelineAppBACKEND
 https://user-images.githubusercontent.com/108423881/213824033-c814332c-52f1-44a6-9d7c-193ada8a8415.mp4
 
 ## Commands: ##
-<ins> ### Step 1 ### </ins>
+### Step 1 ###
 git clone URL
-<ins> ### Step 2 ### </ins>
-#### Backend: ####
-bundle install
-rails db:migrate
-#### Frontend: ####
-npm install
-<ins> ### Step 3 ### </ins>
-#### Backend: ####
-rails s -p 4000
-#### Frontend: ####
-npm start
+### Step 2 ###
+#### Backend: #### bundle install  rails db:migrate
+#### Frontend: #### npm install
+### Step 3 ###
+#### Backend: #### rails s -p 4000
+#### Frontend: #### npm start
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
